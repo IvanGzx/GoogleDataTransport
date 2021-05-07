@@ -41,7 +41,8 @@ pb_bytes_array_t *GDTCCTEncodeString(NSString *string) {
 }
 
 pb_bytes_array_t *GDTCCTEncodeData(NSData *data) {
-  pb_bytes_array_t *pbBytesArray = calloc(1, PB_BYTES_ARRAY_T_ALLOCSIZE(data.length));
+  uint32_t size = (uint32_t)data.length;
+  pb_bytes_array_t *pbBytesArray = calloc(1, PB_BYTES_ARRAY_T_ALLOCSIZE(size));
   if (pbBytesArray != NULL) {
     [data getBytes:pbBytesArray->bytes length:data.length];
     pbBytesArray->size = (pb_size_t)data.length;
